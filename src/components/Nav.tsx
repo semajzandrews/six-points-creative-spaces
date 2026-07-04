@@ -32,7 +32,7 @@ export default function Nav() {
             Six Points
           </span>
         </a>
-        <div className="hidden gap-8 text-sm text-bone-dim md:flex">
+        <div className="hidden gap-8 text-sm text-bone/90 md:flex">
           {LINKS.map((l) => (
             <a key={l.href} href={l.href} className="transition-colors hover:text-gold-hi">
               {l.label}
