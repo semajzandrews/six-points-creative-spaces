@@ -30,10 +30,10 @@ const OCCASIONS = [
 ];
 
 const GALLERY = [
-  { img: "/img/16985178.jpg", alt: "Warm venue interior with wood and brick", span: "md:col-span-2 md:row-span-2" },
+  { img: "/img/16935897.jpg", alt: "Candlelit banquet hall with purple and gold ambient lighting", span: "md:col-span-2 md:row-span-2" },
   { img: "/img/5970895.jpg", alt: "Friends celebrating with confetti and gold balloons", span: "" },
   { img: "/img/14457436.jpg", alt: "Balloon arch over a dressed party table", span: "md:row-span-2" },
-  { img: "/img/30142374.jpg", alt: "Champagne glasses under gold decor", span: "" },
+  { img: "/img/17001774.jpg", alt: "Dark wood table set with greenery centerpiece", span: "" },
 ];
 
 function SectionHead({ kicker, title }: { kicker: string; title: string }) {
