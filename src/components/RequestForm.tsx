@@ -1,6 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import { formatAsYouType } from "../lib/phone";
+
+/* PHONE DOCTRINE · Six Points has no published phone number, so there is
+   nothing on this site to dial and no number is invented here. What the
+   doctrine still governs is the one phone field the site does have: the
+   contact line on the request form.
+
+   The field takes a phone OR an email, so the mask has to be conditional.
+   The moment the entry is unambiguously a number — digits and phone
+   punctuation only, nothing alphabetic — it formats to (973) 000-0000, the
+   house format. An email is passed through untouched. */
+const LOOKS_LIKE_PHONE = /^[\d\s().+-]*$/;
+
+function maskContact(raw: string): string {
+  if (!LOOKS_LIKE_PHONE.test(raw) || raw.replace(/\D/g, "").length < 3) return raw;
+  return formatAsYouType(raw);
+}
 
 const OCCASIONS = [
   "Birthday",
@@ -13,6 +30,7 @@ const OCCASIONS = [
 
 export default function RequestForm() {
   const [sent, setSent] = useState(false);
+  const [contact, setContact] = useState("");
 
   if (sent) {
     return (
@@ -37,7 +55,15 @@ export default function RequestForm() {
       }}
     >
       <input className="field" name="name" placeholder="Your name" required aria-label="Your name" />
-      <input className="field" name="contact" placeholder="Phone or email" required aria-label="Phone or email" />
+      <input
+        className="field"
+        name="contact"
+        value={contact}
+        onChange={(e) => setContact(maskContact(e.target.value))}
+        placeholder="(973) 000-0000 or your email"
+        required
+        aria-label="Phone or email"
+      />
       <select className="field" name="occasion" defaultValue="" required aria-label="Occasion">
         <option value="" disabled>
           What&apos;s the occasion?
